@@ -16,48 +16,43 @@ const articles = [
 
 export function PressMediaSection() {
   return (
-    <div className="max-w-7xl mx-auto font-sans">
-      <div className="text-center mb-16">
-        <div className="flex items-center justify-center gap-3 mb-6">
-          <Newspaper className="w-8 h-8 text-accent" />
-          <h2 className="text-4xl md:text-5xl font-bold font-sans">Press & Media</h2>
-        </div>
-        <p className="text-xl text-muted-foreground max-w-2xl mx-auto font-sans">
+    <div className="max-w-4xl mx-auto">
+      <div className="text-center mb-12">
+        <h2 className="text-2xl sm:text-3xl font-light text-foreground mb-4">
+          <span className="font-medium text-accent">Press & Media</span>
+        </h2>
+        <p className="text-base sm:text-lg text-muted-foreground max-w-xl mx-auto leading-relaxed">
           Featured articles, podcast appearances, and media coverage
         </p>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-8">
+      <div className="space-y-12">
         {/* Featured Articles */}
         {articles.map((article, index) => (
-          <Card key={index} className="flex flex-col hover:border-accent/50 hover:shadow-xl transition-all duration-300">
-            <CardHeader>
-              <a
-                href={article.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-accent transition-colors"
-              >
-                <CardTitle className="text-xl leading-tight text-balance font-sans">{article.title}</CardTitle>
-              </a>
-            </CardHeader>
-            <CardContent className="flex-1 flex flex-col">
-              <CardDescription className="leading-relaxed flex-1 font-sans">{article.description}</CardDescription>
-            </CardContent>
-          </Card>
+          <div key={index} className="border-b border-border pb-8 last:border-b-0">
+            <a
+              href={article.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-accent transition-colors block"
+            >
+              <h3 className="text-lg font-medium text-foreground mb-3">{article.title}</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">{article.description}</p>
+            </a>
+          </div>
         ))}
 
-        {/* Podcast Card with Spotify Embed */}
-        <Card className="overflow-hidden hover:border-accent/50 hover:shadow-xl transition-all duration-300">
-          <CardContent className="p-6">
-            <h3 className="text-xl font-bold mb-3 font-sans">Mistakes, Missteps, and Mindsets Podcast</h3>
-            <p className="text-sm text-muted-foreground mb-4 font-sans">
-              I was a guest on episode 12, where we discussed the importance of sharing stories of failure, and
-              fostering resilience.
-            </p>
+        {/* Podcast Section */}
+        <div className="border-b border-border pb-8">
+          <h3 className="text-lg font-medium text-foreground mb-3">Mistakes, Missteps, and Mindsets Podcast</h3>
+          <p className="text-sm text-muted-foreground mb-6 leading-relaxed">
+            I was a guest on episode 12, where we discussed the importance of sharing stories of failure, and
+            fostering resilience.
+          </p>
+          <div className="max-w-md mx-auto">
             <iframe
               data-testid="embed-iframe"
-              style={{ borderRadius: "12px" }}
+              style={{ borderRadius: "8px" }}
               src="https://open.spotify.com/embed/episode/0QoSItztNZVxKdETtDr0ZA?utm_source=generator"
               width="100%"
               height="352"
@@ -66,27 +61,25 @@ export function PressMediaSection() {
               allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
               loading="lazy"
             />
-          </CardContent>
-        </Card>
+          </div>
+        </div>
 
-        {/* 3MT Video Card */}
-        <Card className="overflow-hidden hover:border-accent/50 hover:shadow-xl transition-all duration-300">
-          <CardContent className="p-6">
-            <h3 className="text-xl font-bold mb-1 font-sans">3 Minute Thesis Competition</h3>
-            <p className="text-sm text-muted-foreground mb-4 font-sans">First Place Winner, 2023</p>
-            <div className="aspect-video rounded-lg overflow-hidden">
-              <iframe
-                width="100%"
-                height="100%"
-                src="https://www.youtube.com/embed/WYqoQc-xpSo"
-                title="3 Minute Thesis Competition"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                className="w-full h-full"
-              />
-            </div>
-          </CardContent>
-        </Card>
+        {/* 3MT Video Section */}
+        <div>
+          <h3 className="text-lg font-medium text-foreground mb-1">3 Minute Thesis Competition</h3>
+          <p className="text-sm text-muted-foreground mb-6">First Place Winner, 2023</p>
+          <div className="aspect-video max-w-2xl mx-auto">
+            <iframe
+              width="100%"
+              height="100%"
+              src="https://www.youtube.com/embed/WYqoQc-xpSo"
+              title="3 Minute Thesis Competition"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="w-full h-full"
+            />
+          </div>
+        </div>
       </div>
     </div>
   )

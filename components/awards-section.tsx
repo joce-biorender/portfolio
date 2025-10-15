@@ -34,44 +34,46 @@ const awards = [
 
 export function AwardsSection() {
   return (
-    <div className="max-w-7xl mx-auto">
-      <div className="text-center mb-16">
-        <div className="flex items-center justify-center gap-3 mb-6">
-          <Award className="w-8 h-8 text-accent" />
-          <h2 className="text-4xl md:text-5xl font-bold font-sans">Awards & Recognition</h2>
-        </div>
-        <p className="text-xl text-muted-foreground max-w-2xl mx-auto font-sans">
+    <div className="max-w-4xl mx-auto">
+      <div className="text-center mb-12">
+        <h2 className="text-2xl sm:text-3xl font-light text-foreground mb-4">
+          <span className="font-medium text-accent">Awards & Recognition</span>
+        </h2>
+        <p className="text-base sm:text-lg text-muted-foreground max-w-xl mx-auto leading-relaxed">
           Recognition for excellence in automation, teaching, and research
         </p>
       </div>
-      <div className="grid md:grid-cols-2 gap-8">
+      <div className="space-y-8">
         {awards.map((award, index) => (
-          <Card key={index} className="flex flex-col hover:border-accent/50 hover:shadow-xl transition-all duration-300 font-sans overflow-hidden">
-            {award.image && (
-              <div className="relative w-full h-48 overflow-hidden">
-                <img
-                  src={award.image || "/placeholder.svg"}
-                  alt={award.title}
-                  className="w-full h-full object-cover"
-                  style={{
-                    objectPosition: award.title.includes("Zappy") ? "50% -50%" : "50% 25%",
-                  }}
-                />
-              </div>
-            )}
-            <CardHeader className="font-sans">
-              <CardTitle className="text-xl leading-tight text-balance font-sans">{award.title}</CardTitle>
-            </CardHeader>
-            <CardContent className="flex-1 flex flex-col">
-              <CardDescription className="mb-6 leading-relaxed flex-1 font-sans">{award.description}</CardDescription>
-              <Button variant="outline" size="sm" asChild className="w-fit bg-transparent font-sans">
-                <a href={award.link} target="_blank" rel="noopener noreferrer">
+          <div key={index} className="border-b border-border pb-8 last:border-b-0">
+            <div className="flex flex-col sm:flex-row gap-6">
+              {award.image && (
+                <div className="relative w-full sm:w-32 h-32 flex-shrink-0 overflow-hidden">
+                  <img
+                    src={award.image || "/placeholder.svg"}
+                    alt={award.title}
+                    className="w-full h-full object-cover"
+                    style={{
+                      objectPosition: award.title.includes("Zappy") ? "50% -50%" : "50% 25%",
+                    }}
+                  />
+                </div>
+              )}
+              <div className="flex-1">
+                <h3 className="text-lg font-medium text-foreground mb-2">{award.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed mb-4">{award.description}</p>
+                <a 
+                  href={award.link} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-xs text-accent hover:text-accent/80 transition-colors inline-flex items-center gap-1"
+                >
                   Learn More
-                  <ExternalLink className="w-4 h-4 ml-2" />
+                  <ExternalLink className="w-3 h-3" />
                 </a>
-              </Button>
-            </CardContent>
-          </Card>
+              </div>
+            </div>
+          </div>
         ))}
       </div>
     </div>
