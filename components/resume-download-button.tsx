@@ -188,9 +188,9 @@ export function ResumeDownloadButton() {
   }
 
   return (
-    <Button onClick={generatePDF} className="bg-accent hover:bg-accent/90 text-white">
-      <Download className="w-4 h-4 mr-2" />
-      Download PDF
+    <Button onClick={generatePDF} size="lg" className="bg-foreground hover:bg-foreground/90 text-background font-normal px-8 py-3 rounded-none">
+      <Download className="w-5 h-5 mr-2" />
+      Download Resume
     </Button>
   )
 }

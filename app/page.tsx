@@ -28,7 +28,7 @@ const techStack = [
   { name: "Zapier", category: "Automation" },
   { name: "OpenAI", category: "AI/ML" },
   { name: "Zendesk", category: "Platform" },
-  { name: "Stripe", category: "Platform" },
+  { name: "N8N", category: "Automation" },
   { name: "Google Gemini", category: "AI/ML" },
   { name: "Anthropic Claude", category: "AI/ML" },
   { name: "Metabase", category: "Analytics" },
@@ -87,7 +87,7 @@ export default function Home() {
         <section className="min-h-screen flex items-center justify-center px-4 sm:px-8 py-16">
           <div className="max-w-4xl mx-auto text-center">
             <div className="mb-12 flex justify-center">
-              <div className="relative w-40 h-40 sm:w-48 sm:h-48 rounded-full overflow-hidden border-2 border-border">
+              <div className="relative w-48 h-48 sm:w-56 sm:h-56 rounded-2xl overflow-hidden border border-border">
                 <Image
                   src="/headshot.png"
                   alt="Jocelyne Mendez-Guzman headshot"
@@ -97,11 +97,11 @@ export default function Home() {
               </div>
             </div>
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-light text-foreground mb-8 leading-tight">
-              Hi, I'm <span className="font-medium text-accent">Jocelyne</span>
+              Hi, I'm Jocelyne
             </h1>
             <div className="max-w-2xl mx-auto space-y-6">
               <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed">
-                I'm an <span className="font-medium text-foreground">Automation & Operations Specialist</span> with a Master's in Molecular Science.
+                I'm an <span className="font-medium text-foreground">Automation & Operations Specialist</span> with a Master's in <span className="whitespace-nowrap">Molecular Science</span>.
               </p>
               <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
                 Research taught me how to troubleshoot, design repeatable experiments, and persist when things break. 

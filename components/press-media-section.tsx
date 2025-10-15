@@ -36,7 +36,7 @@ export function PressMediaSection() {
               rel="noopener noreferrer"
               className="hover:text-accent transition-colors block"
             >
-              <h3 className="text-lg font-medium text-foreground mb-3">{article.title}</h3>
+              <h3 className="text-lg font-medium text-accent mb-3">{article.title}</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">{article.description}</p>
             </a>
           </div>
@@ -52,10 +52,10 @@ export function PressMediaSection() {
           <div className="max-w-md mx-auto">
             <iframe
               data-testid="embed-iframe"
-              style={{ borderRadius: "8px" }}
-              src="https://open.spotify.com/embed/episode/0QoSItztNZVxKdETtDr0ZA?utm_source=generator"
+              style={{ borderRadius: "12px" }}
+              src="https://open.spotify.com/embed/episode/0QoSItztNZVxKdETtDr0ZA?utm_source=generator&theme=0"
               width="100%"
-              height="352"
+              height="152"
               frameBorder="0"
               allowFullScreen
               allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
