@@ -1,5 +1,4 @@
 import { ArrowLeft, Linkedin, Mail } from "lucide-react"
-import Image from "next/image"
 import Link from "next/link"
 
 export default function LeadQualifierPage() {
@@ -90,19 +89,6 @@ export default function LeadQualifierPage() {
               </div>
             </div>
 
-            {/* Workflow Diagram */}
-            <div>
-              <h3 className="text-lg font-medium text-foreground mb-6 border-b border-border pb-2">Workflow Diagram</h3>
-              <div className="border border-border p-6">
-                <Image
-                  src="/zapier-workflow-diagram-for-lead-qualification-and.jpg"
-                  alt="Lead Gen AI Qualifier Zapier Workflow"
-                  width={800}
-                  height={1200}
-                  className="w-full h-auto"
-                />
-              </div>
-            </div>
 
             {/* Project Details */}
             <div>
