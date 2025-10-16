@@ -116,10 +116,10 @@ export default function Home() {
             
             
             <div className="max-w-2xl mx-auto space-y-6">
-              <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed">
+              <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed whitespace-nowrap">
                 I'm an <span className="font-medium text-foreground">Automation & Operations Specialist</span> with a Master's in <span className="whitespace-nowrap">Molecular Science</span>.
               </p>
-              <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
+              <p className="text-base sm:text-lg text-muted-foreground leading-relaxed whitespace-nowrap">
                 Research taught me how to troubleshoot systematically and persist when things break. 
                 <span className="block mt-2 text-accent font-medium">That rhythm still guides every system I build today.</span>
               </p>
