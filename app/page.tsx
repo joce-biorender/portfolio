@@ -174,22 +174,16 @@ export default function Home() {
                 const projectData = {
                   'ar-triager': {
                     icon: '⚡',
-                    gradient: 'from-blue-500/10 to-purple-500/10',
-                    borderGradient: 'from-blue-500/20 to-purple-500/20',
                     badge: '9,000+ tickets',
                     description: 'AI-powered ticket routing'
                   },
                   'refund-eligibility': {
                     icon: '💰',
-                    gradient: 'from-green-500/10 to-emerald-500/10',
-                    borderGradient: 'from-green-500/20 to-emerald-500/20',
                     badge: '400-550 hours saved',
                     description: 'Automated refund assessment'
                   },
                   'lead-qualifier': {
                     icon: '🎯',
-                    gradient: 'from-orange-500/10 to-red-500/10',
-                    borderGradient: 'from-orange-500/20 to-red-500/20',
                     badge: '$337K pipeline',
                     description: 'AI lead qualification system'
                   }
@@ -203,11 +197,11 @@ export default function Home() {
                     href={`/automation/${study.id}`}
                     className="group block relative overflow-hidden rounded-2xl border border-border/50 hover:border-accent/30 transition-all duration-500 cursor-pointer transform hover:scale-[1.03] hover:shadow-2xl"
                   >
-                    {/* Background Gradient */}
-                    <div className={`absolute inset-0 bg-gradient-to-br ${data.gradient} opacity-60 group-hover:opacity-80 transition-opacity duration-500`} />
+                    {/* Background Gradient - Consistent theme colors */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-accent/10 opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
                     
-                    {/* Border Gradient */}
-                    <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${data.borderGradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+                    {/* Border Gradient - Theme accent color */}
+                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-accent/10 to-accent/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                     
                     {/* Content */}
                     <div className="relative p-8">
@@ -227,14 +221,6 @@ export default function Home() {
                         <p className="text-sm text-muted-foreground leading-relaxed">
                           {data.description}
                         </p>
-                      </div>
-                      
-                      {/* Key Metric */}
-                      <div className="mt-6 pt-4 border-t border-border/30">
-                        <div className="flex items-center justify-between">
-                          <span className="text-xs text-muted-foreground uppercase tracking-wide font-medium">Impact</span>
-                          <span className="text-sm font-bold text-accent">{study.metric}</span>
-                        </div>
                       </div>
                       
                       {/* Hover Arrow */}
