@@ -321,7 +321,7 @@ Confidence Level: [High / Medium / Low]`}
             <h3 className="font-medium text-foreground mt-8 mb-4">Adding Transparency to Black Box Logic</h3>
             
             <p>
-              Another challenge was that the automation initially acted like a black box. It would return a simple "Eligible" or "Not Eligible," leaving agents confused about the reason. Together, we added a structured explanation output that included both a human-readable reason and a short machine-readable code, such as PREMIUM, 7DAYS, or 30DAYS. This change gave agents clarity while keeping the logic traceable for future analytics.
+              Another challenge was that the automation initially acted like a black box. It would return a simple "Eligible" or "Not Eligible," leaving agents confused about the reason. We decided to add a clear output that included both a human-readable reason and a short machine-readable code, such as PREMIUM, 7DAYS, or 30DAYS. This change gave agents clarity while keeping the logic traceable for future analytics.
             </p>
             
             <h3 className="font-medium text-foreground mt-8 mb-4">Implementing a Human-in-the-Loop Review Step</h3>
