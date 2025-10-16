@@ -146,7 +146,7 @@ export default function Home() {
             {/* Scroll-triggered Stamp Animation */}
             {showStamp && (
               <div className="mt-6 flex justify-center">
-                <div className="animate-bounce-in-down">
+                <div className="animate-stamp-down">
                   <div className="inline-flex items-center gap-3 bg-accent/10 px-8 py-4 rounded-full border-2 border-accent/30 shadow-xl transition-all duration-300 hover:scale-105">
                     <span className="text-base font-semibold text-accent">🏆 Zapier's 2025 Operations Automator of the Year</span>
                   </div>
