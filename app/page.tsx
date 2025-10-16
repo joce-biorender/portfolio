@@ -124,8 +124,8 @@ export default function Home() {
                 <span className="block mt-2 text-accent font-medium">That rhythm still guides every system I build today.</span>
               </p>
             </div>
-            <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button asChild size="lg" className="bg-foreground hover:bg-foreground/90 text-background font-normal px-8 py-3 rounded-none">
+            <div className="mt-12 flex flex-row items-center justify-center gap-4">
+              <Button asChild size="lg" className="bg-foreground hover:bg-foreground/90 text-background font-normal px-4 sm:px-8 py-3 rounded-none text-sm sm:text-base">
                 <a href="#automation">
                   View My Work
                 </a>
@@ -134,7 +134,7 @@ export default function Home() {
                 asChild
                 size="lg"
                 variant="outline"
-                className="border-foreground text-foreground hover:bg-foreground hover:text-background bg-transparent font-normal px-8 py-3 rounded-none"
+                className="border-foreground text-foreground hover:bg-foreground hover:text-background bg-transparent font-normal px-4 sm:px-8 py-3 rounded-none text-sm sm:text-base"
               >
                 <a href="#contact">
                   Get In Touch
