@@ -51,14 +51,36 @@ export function ContactForm() {
 
     setIsSubmitting(true)
 
-    // Simulate form submission (replace with actual form handling)
+    // Send email using EmailJS
     try {
-      await new Promise(resolve => setTimeout(resolve, 1000))
-      setIsSubmitted(true)
-      setFormData({ name: "", email: "", subject: "", message: "" })
-      setErrors({})
+      const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          service_id: 'service_hjeip4e',
+          template_id: 'template_912f0x5',
+          user_id: 'Qsz4DGzcAYYWMtH_G',
+          template_params: {
+            name: formData.name,
+            email: formData.email,
+            subject: formData.subject,
+            message: formData.message,
+          },
+        }),
+      })
+
+      if (response.ok) {
+        setIsSubmitted(true)
+        setFormData({ name: "", email: "", subject: "", message: "" })
+        setErrors({})
+      } else {
+        throw new Error('Failed to send email')
+      }
     } catch (error) {
       console.error("Form submission error:", error)
+      setErrors({ general: 'Something went wrong. Please try again.' })
     } finally {
       setIsSubmitting(false)
     }
