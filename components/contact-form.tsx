@@ -53,22 +53,18 @@ export function ContactForm() {
 
     // Send email using EmailJS
     try {
+      const formDataToSend = new FormData()
+      formDataToSend.append('service_id', 'service_hjeip4e')
+      formDataToSend.append('template_id', 'template_912f0x5')
+      formDataToSend.append('user_id', 'Qsz4DGzcAYYWMtH_G')
+      formDataToSend.append('template_params[name]', formData.name)
+      formDataToSend.append('template_params[email]', formData.email)
+      formDataToSend.append('template_params[subject]', formData.subject)
+      formDataToSend.append('template_params[message]', formData.message)
+
       const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          service_id: 'service_hjeip4e',
-          template_id: 'template_912f0x5',
-          user_id: 'Qsz4DGzcAYYWMtH_G',
-          template_params: {
-            name: formData.name,
-            email: formData.email,
-            subject: formData.subject,
-            message: formData.message,
-          },
-        }),
+        body: formDataToSend,
       })
 
       if (response.ok) {
@@ -76,6 +72,8 @@ export function ContactForm() {
         setFormData({ name: "", email: "", subject: "", message: "" })
         setErrors({})
       } else {
+        const errorText = await response.text()
+        console.error('EmailJS Error:', errorText)
         throw new Error('Failed to send email')
       }
     } catch (error) {
