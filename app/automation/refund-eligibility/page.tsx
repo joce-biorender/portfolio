@@ -334,7 +334,7 @@ Confidence Level: [High / Medium / Low]`}
               <img 
                 src="/mayet-suggestion.png" 
                 alt="Mayet suggesting human-in-the-loop approach in Slack" 
-                className="max-w-md mx-auto rounded-lg border border-border shadow-sm"
+                className="max-w-lg mx-auto rounded-lg border border-border shadow-sm"
               />
             </div>
             
