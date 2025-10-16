@@ -54,25 +54,39 @@ export function ContactForm() {
     // Send email using EmailJS
     try {
       console.log('Starting form submission...')
-      const formDataToSend = new FormData()
-      formDataToSend.append('service_id', 'service_hjeip4e')
-      formDataToSend.append('template_id', 'template_912f0x5')
-      formDataToSend.append('user_id', 'Qsz4DGzcAYYWMtH_G')
-      formDataToSend.append('template_params[name]', formData.name)
-      formDataToSend.append('template_params[email]', formData.email)
-      formDataToSend.append('template_params[subject]', formData.subject)
-      formDataToSend.append('template_params[message]', formData.message)
+      console.log('Form data:', formData)
+      
+      // Try JSON approach first
+      const emailData = {
+        service_id: 'service_hjeip4e',
+        template_id: 'template_912f0x5',
+        user_id: 'Qsz4DGzcAYYWMtH_G',
+        template_params: {
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message
+        }
+      }
+
+      console.log('Email data:', emailData)
 
       console.log('Sending request to EmailJS...')
       const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
         method: 'POST',
-        body: formDataToSend,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(emailData),
       })
 
       console.log('Response status:', response.status)
       console.log('Response ok:', response.ok)
+      console.log('Response headers:', Object.fromEntries(response.headers.entries()))
 
       if (response.ok) {
+        const responseText = await response.text()
+        console.log('EmailJS Success Response:', responseText)
         console.log('Email sent successfully!')
         setIsSubmitted(true)
         setFormData({ name: "", email: "", subject: "", message: "" })
@@ -81,10 +95,16 @@ export function ContactForm() {
         const errorText = await response.text()
         console.error('EmailJS Error Response:', errorText)
         console.error('Response status:', response.status)
+        console.error('Response statusText:', response.statusText)
         throw new Error(`Failed to send email: ${response.status} ${errorText}`)
       }
     } catch (error) {
       console.error("Form submission error:", error)
+      console.error("Error details:", {
+        name: error.name,
+        message: error.message,
+        stack: error.stack
+      })
       setErrors({ general: 'Something went wrong. Please try again.' })
     } finally {
       setIsSubmitting(false)
