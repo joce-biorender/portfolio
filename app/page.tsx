@@ -61,7 +61,7 @@ export default function Home() {
       <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-8 py-4 flex items-center justify-between">
           <div className="flex items-center gap-4 sm:gap-8">
-            <span className="text-base sm:text-lg text-foreground font-semibold font-sans">Jocelyne Mendez-Guzman</span>
+            <span className="text-sm sm:text-base md:text-lg text-foreground font-semibold font-sans">Jocelyne Mendez-Guzman</span>
             <div className="hidden md:flex items-center gap-6 font-sans font-medium">
               <a href="#automation" className="text-sm font-medium text-foreground hover:text-accent transition-colors">
                 Work
@@ -98,7 +98,7 @@ export default function Home() {
 
       <main>
         {/* Hero Section */}
-        <section className="min-h-screen flex items-center justify-center px-4 sm:px-8 py-16">
+        <section className="min-h-screen flex items-center justify-center px-4 sm:px-8 py-8 sm:py-16">
           <div className="max-w-4xl mx-auto text-center">
             <div className="mb-12 flex justify-center">
               <div className="relative w-48 h-48 sm:w-56 sm:h-56 rounded-2xl overflow-hidden border border-border">
@@ -116,10 +116,10 @@ export default function Home() {
             
             
             <div className="max-w-2xl mx-auto space-y-6">
-              <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed whitespace-nowrap">
-                I'm an <span className="font-medium text-foreground">Automation & Operations Specialist</span> with a Master's in <span className="whitespace-nowrap">Molecular Science</span>.
+              <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed">
+                I'm an <span className="font-medium text-foreground">Automation & Operations Specialist</span> with a Master's in Molecular Science.
               </p>
-              <p className="text-base sm:text-lg text-muted-foreground leading-relaxed whitespace-nowrap">
+              <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
                 Research taught me how to troubleshoot systematically and persist when things break. 
                 <span className="block mt-2 text-accent font-medium">That rhythm still guides every system I build today.</span>
               </p>
