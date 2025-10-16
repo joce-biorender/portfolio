@@ -53,10 +53,6 @@ export function ContactForm() {
 
     // Send email using EmailJS
     try {
-      console.log('Starting form submission...')
-      console.log('Form data:', formData)
-      
-      // Try JSON approach first
       const emailData = {
         service_id: 'service_hjeip4e',
         template_id: 'template_912f0x5',
@@ -69,9 +65,6 @@ export function ContactForm() {
         }
       }
 
-      console.log('Email data:', emailData)
-
-      console.log('Sending request to EmailJS...')
       const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
         method: 'POST',
         headers: {
@@ -80,31 +73,17 @@ export function ContactForm() {
         body: JSON.stringify(emailData),
       })
 
-      console.log('Response status:', response.status)
-      console.log('Response ok:', response.ok)
-      console.log('Response headers:', Object.fromEntries(response.headers.entries()))
-
       if (response.ok) {
-        const responseText = await response.text()
-        console.log('EmailJS Success Response:', responseText)
-        console.log('Email sent successfully!')
         setIsSubmitted(true)
         setFormData({ name: "", email: "", subject: "", message: "" })
         setErrors({})
       } else {
         const errorText = await response.text()
-        console.error('EmailJS Error Response:', errorText)
-        console.error('Response status:', response.status)
-        console.error('Response statusText:', response.statusText)
-        throw new Error(`Failed to send email: ${response.status} ${errorText}`)
+        console.error('EmailJS Error:', errorText)
+        throw new Error('Failed to send email')
       }
     } catch (error) {
       console.error("Form submission error:", error)
-      console.error("Error details:", {
-        name: error.name,
-        message: error.message,
-        stack: error.stack
-      })
       setErrors({ general: 'Something went wrong. Please try again.' })
     } finally {
       setIsSubmitting(false)
