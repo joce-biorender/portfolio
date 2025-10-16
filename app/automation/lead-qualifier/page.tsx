@@ -225,8 +225,8 @@ export default function LeadQualifierPage() {
                 The system uses a sophisticated round-robin assignment algorithm that respects agent availability while maintaining fair distribution. 
                 It starts from the current rotator position and cycles through available agents, with fallback logic for when the preferred agent is unavailable.
               </p>
-              <div className="bg-slate-900 p-4 rounded border border-slate-700">
-                <pre className="text-xs text-slate-100 overflow-x-auto font-mono">
+              <div className="bg-muted/50 p-4 rounded border">
+                <pre className="text-xs text-foreground overflow-x-auto">
 {`// Round-Robin Assignment with Availability Check
 const names = inputData.names.split(",").map(n => n.trim());
 const available = inputData.available.split(",").map(a => a.trim().toLowerCase() === "true");

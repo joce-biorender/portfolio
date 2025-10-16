@@ -171,8 +171,8 @@ export default function RefundEligibilityPage() {
                 The system uses Gemini 2.0 Flash to analyze customer communications and determine if they're requesting a legitimate refund. 
                 The AI prompt is designed to distinguish between refund requests and other types of inquiries like cancellations or technical support.
               </p>
-              <div className="bg-slate-900 p-4 rounded border border-slate-700">
-                <pre className="text-xs text-slate-100 overflow-x-auto font-mono">
+              <div className="bg-muted/50 p-4 rounded border">
+                <pre className="text-xs text-foreground overflow-x-auto">
 {`// AI Classification Prompt (Gemini 2.0 Flash)
 Role: You are a highly skilled and empathetic customer service AI assistant 
 for a subscription-based service, specializing in meticulous email analysis 

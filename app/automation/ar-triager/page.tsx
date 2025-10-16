@@ -205,30 +205,28 @@ export default function ARTriagerPage() {
                 current workload, and timezone-aware working hours. This prevents race conditions by calculating assignments 
                 atomically within a single code step.
               </p>
-              <div className="bg-slate-900 p-4 rounded border border-slate-700">
-                <pre className="text-xs text-slate-100 overflow-x-auto font-mono [&_.comment]:text-slate-400 [&_.keyword]:text-blue-400 [&_.string]:text-green-400 [&_.number]:text-yellow-400 [&_.function]:text-purple-400 [&_.variable]:text-orange-400">
-<div className="text-xs text-slate-100 font-mono">
-  <div className="text-slate-400">// Parse inputs from Zapier</div>
-  <div><span className="text-blue-400">const</span> <span className="text-orange-400">names</span> = <span className="text-orange-400">inputData</span>.<span className="text-purple-400">names</span>.<span className="text-purple-400">split</span>(<span className="text-green-400">","</span>).<span className="text-purple-400">map</span>(<span className="text-orange-400">n</span> => <span className="text-orange-400">n</span>.<span className="text-purple-400">trim</span>());</div>
-  <div><span className="text-blue-400">const</span> <span className="text-orange-400">available</span> = <span className="text-orange-400">inputData</span>.<span className="text-purple-400">available</span>.<span className="text-purple-400">split</span>(<span className="text-green-400">","</span>).<span className="text-purple-400">map</span>(<span className="text-orange-400">a</span> => <span className="text-orange-400">a</span>.<span className="text-purple-400">trim</span>().<span className="text-purple-400">toLowerCase</span>() === <span className="text-green-400">"true"</span>);</div>
-  <br />
-  <div className="text-slate-400">// Map agent open ticket counts from individually named inputs</div>
-  <div><span className="text-blue-400">const</span> <span className="text-orange-400">openCounts</span> = {'{'}</div>
-  <div>  <span className="text-green-400">"Agent1"</span>: <span className="text-purple-400">parseInt</span>(<span className="text-orange-400">inputData</span>.<span className="text-orange-400">agent1_open</span>, <span className="text-yellow-400">10</span>) || <span className="text-yellow-400">0</span>,</div>
-  <div>  <span className="text-green-400">"Agent2"</span>: <span className="text-purple-400">parseInt</span>(<span className="text-orange-400">inputData</span>.<span className="text-orange-400">agent2_open</span>, <span className="text-yellow-400">10</span>) || <span className="text-yellow-400">0</span>,</div>
-  <div>  <span className="text-green-400">"Agent3"</span>: <span className="text-purple-400">parseInt</span>(<span className="text-orange-400">inputData</span>.<span className="text-orange-400">agent3_open</span>, <span className="text-yellow-400">10</span>) || <span className="text-yellow-400">0</span>,</div>
-  <div>  <span className="text-green-400">"Agent4"</span>: <span className="text-purple-400">parseInt</span>(<span className="text-orange-400">inputData</span>.<span className="text-orange-400">agent4_open</span>, <span className="text-yellow-400">10</span>) || <span className="text-yellow-400">0</span></div>
-  <div>{'};'}</div>
-  <br />
-  <div className="text-slate-400">// Get current hour in ET (timezone-aware)</div>
-  <div><span className="text-blue-400">const</span> <span className="text-orange-400">now</span> = <span className="text-blue-400">new</span> <span className="text-purple-400">Date</span>();</div>
-  <div><span className="text-blue-400">const</span> <span className="text-orange-400">etHour</span> = <span className="text-orange-400">now</span>.<span className="text-purple-400">toLocaleString</span>(<span className="text-green-400">"en-US"</span>, {'{'}</div>
-  <div>  <span className="text-orange-400">timeZone</span>: <span className="text-green-400">"America/Toronto"</span>,</div>
-  <div>  <span className="text-orange-400">hour</span>: <span className="text-green-400">"numeric"</span>,</div>
-  <div>  <span className="text-orange-400">hour12</span>: <span className="text-blue-400">false</span></div>
-  <div>{'});'}</div>
-  <div><span className="text-blue-400">const</span> <span className="text-orange-400">currentHour</span> = <span className="text-purple-400">parseInt</span>(<span className="text-orange-400">etHour</span>, <span className="text-yellow-400">10</span>);</div>
-</div>
+              <div className="bg-muted/50 p-4 rounded border">
+                <pre className="text-xs text-foreground overflow-x-auto">
+{`// Parse inputs from Zapier
+const names = inputData.names.split(",").map(n => n.trim());
+const available = inputData.available.split(",").map(a => a.trim().toLowerCase() === "true");
+
+// Map agent open ticket counts from individually named inputs
+const openCounts = {
+  "Agent1": parseInt(inputData.agent1_open, 10) || 0,
+  "Agent2": parseInt(inputData.agent2_open, 10) || 0,
+  "Agent3": parseInt(inputData.agent3_open, 10) || 0,
+  "Agent4": parseInt(inputData.agent4_open, 10) || 0
+};
+
+// Get current hour in ET (timezone-aware)
+const now = new Date();
+const etHour = now.toLocaleString("en-US", {
+  timeZone: "America/Toronto",
+  hour: "numeric",
+  hour12: false
+});
+const currentHour = parseInt(etHour, 10);
 
 // Define working hours for each agent
 const workingHours = {
@@ -291,8 +289,8 @@ return {
                 The most critical design decision was treating timezone availability as strategic business logic, not just a simple on/off flag. 
                 With team members working across different time zones and schedules, I built time-based eligibility directly into the assignment algorithm.
               </p>
-              <div className="bg-slate-900 p-4 rounded border border-slate-700">
-                <pre className="text-xs text-slate-100 overflow-x-auto font-mono [&_.comment]:text-slate-400 [&_.keyword]:text-blue-400 [&_.string]:text-green-400 [&_.number]:text-yellow-400 [&_.function]:text-purple-400 [&_.variable]:text-orange-400">
+              <div className="bg-muted/50 p-4 rounded border">
+                <pre className="text-xs text-foreground overflow-x-auto">
 {`// Timezone-aware working hours validation
 const isWithinWorkingHours = (agent, currentTime = new Date()) => {
   const agentTimezone = agent.timezone || 'UTC';
