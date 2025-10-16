@@ -309,7 +309,7 @@ Confidence Level: [High / Medium / Low]`}
           
           <div className="space-y-6 text-base text-muted-foreground leading-relaxed">
             <p>
-              This project taught me how much stronger automations become when they are built collaboratively. I built the Refund Eligibility Automation with my colleague <a href="https://www.linkedin.com/in/mayet-awoke-a059481a7" target="_blank" rel="noopener noreferrer" className="text-accent hover:text-accent/80 underline">Mayet Awoke</a>, and most of it came together through Slack huddles with my screen shared. We built the system piece by piece, testing, debugging, and rewriting logic until we had a working minimum viable product. I handled most of the code-based logic inside Zapier, while Mayet often helped pressure-test how the system behaved in real-world refund scenarios.
+              This project taught me how much stronger automations become when they are built collaboratively. I built the Refund Eligibility Automation with my colleague <a href="https://www.linkedin.com/in/mayet-awoke-a059481a7" target="_blank" rel="noopener noreferrer" className="text-accent hover:text-accent/80 underline">Mayet Awoke</a>, and most of it came together through Slack huddles with my screen shared. We built the system piece by piece, testing, debugging, and rewriting logic until we had a working minimum viable product. I handled the code-based logic inside Zapier, and Mayet pressure-tested the system's behaviour in real-world refund scenarios.
             </p>
             
             <h3 className="font-medium text-foreground mt-8 mb-4">Handling Incomplete and Inconsistent Data</h3>
