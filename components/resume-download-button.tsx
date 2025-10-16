@@ -188,7 +188,12 @@ export function ResumeDownloadButton() {
   }
 
   return (
-    <Button onClick={generatePDF} size="lg" className="bg-foreground hover:bg-foreground/90 text-background font-normal px-8 py-3 rounded-none">
+    <Button 
+      onClick={generatePDF} 
+      size="lg" 
+      className="bg-foreground hover:bg-foreground/90 text-background font-normal px-8 py-3 rounded-none cursor-pointer"
+      style={{ cursor: 'pointer' }}
+    >
       <Download className="w-5 h-5 mr-2" />
       Download Resume
     </Button>

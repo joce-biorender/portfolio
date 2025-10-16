@@ -47,18 +47,22 @@ export function AwardsSection() {
         {awards.map((award, index) => (
           <div key={index} className="border-b border-border pb-8 last:border-b-0">
             <div className="flex flex-col sm:flex-row gap-6">
-              {award.image && (
-                <div className="relative w-full sm:w-32 h-32 flex-shrink-0 overflow-hidden">
+              <div className="relative w-full sm:w-32 h-32 flex-shrink-0 overflow-hidden">
+                {award.image ? (
                   <img
-                    src={award.image || "/placeholder.svg"}
+                    src={award.image}
                     alt={award.title}
                     className="w-full h-full object-cover"
                     style={{
                       objectPosition: award.title.includes("Zappy") ? "50% -50%" : "50% 25%",
                     }}
                   />
-                </div>
-              )}
+                ) : (
+                  <div className="w-full h-full bg-muted/30 flex items-center justify-center">
+                    <Award className="w-8 h-8 text-muted-foreground" />
+                  </div>
+                )}
+              </div>
               <div className="flex-1">
                 <h3 className="text-lg font-medium text-foreground mb-2">{award.title}</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed mb-4">{award.description}</p>

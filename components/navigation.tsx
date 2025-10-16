@@ -9,43 +9,37 @@ export function Navigation() {
 
   return (
     <nav className="border-b border-border bg-background/95 backdrop-blur-sm">
-      <div className="container mx-auto px-6 py-4">
-        <div className="flex items-center justify-center gap-8">
+      <div className="max-w-4xl mx-auto px-4 sm:px-8 py-4">
+        <div className="flex items-center justify-center gap-6 text-sm">
           <Link
-            href="/"
-            className={cn(
-              "text-sm font-medium transition-colors hover:text-accent",
-              pathname === "/" ? "text-accent" : "text-muted-foreground",
-            )}
+            href="/#resume"
+            className="text-muted-foreground hover:text-accent transition-colors"
           >
-            Home
+            Timeline
           </Link>
           <Link
-            href="/my-journey"
-            className={cn(
-              "text-sm font-medium transition-colors hover:text-accent",
-              pathname === "/my-journey" ? "text-accent" : "text-muted-foreground",
-            )}
+            href="/#automation"
+            className="text-muted-foreground hover:text-accent transition-colors"
           >
-            My Journey
+            Projects
           </Link>
           <Link
-            href="/automation-portfolio"
-            className={cn(
-              "text-sm font-medium transition-colors hover:text-accent",
-              pathname === "/automation-portfolio" ? "text-accent" : "text-muted-foreground",
-            )}
+            href="/#awards"
+            className="text-muted-foreground hover:text-accent transition-colors"
           >
-            Automation Portfolio
+            Awards
           </Link>
           <Link
-            href="/resume"
-            className={cn(
-              "text-sm font-medium transition-colors hover:text-accent",
-              pathname === "/resume" ? "text-accent" : "text-muted-foreground",
-            )}
+            href="/#press-media"
+            className="text-muted-foreground hover:text-accent transition-colors"
           >
-            Resume
+            Media
+          </Link>
+          <Link
+            href="/#contact"
+            className="text-muted-foreground hover:text-accent transition-colors"
+          >
+            Contact
           </Link>
         </div>
       </div>
