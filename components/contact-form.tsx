@@ -53,6 +53,7 @@ export function ContactForm() {
 
     // Send email using EmailJS
     try {
+      console.log('Starting form submission...')
       const formDataToSend = new FormData()
       formDataToSend.append('service_id', 'service_hjeip4e')
       formDataToSend.append('template_id', 'template_912f0x5')
@@ -62,19 +63,25 @@ export function ContactForm() {
       formDataToSend.append('template_params[subject]', formData.subject)
       formDataToSend.append('template_params[message]', formData.message)
 
+      console.log('Sending request to EmailJS...')
       const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
         method: 'POST',
         body: formDataToSend,
       })
 
+      console.log('Response status:', response.status)
+      console.log('Response ok:', response.ok)
+
       if (response.ok) {
+        console.log('Email sent successfully!')
         setIsSubmitted(true)
         setFormData({ name: "", email: "", subject: "", message: "" })
         setErrors({})
       } else {
         const errorText = await response.text()
-        console.error('EmailJS Error:', errorText)
-        throw new Error('Failed to send email')
+        console.error('EmailJS Error Response:', errorText)
+        console.error('Response status:', response.status)
+        throw new Error(`Failed to send email: ${response.status} ${errorText}`)
       }
     } catch (error) {
       console.error("Form submission error:", error)
@@ -115,6 +122,11 @@ export function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
+      {errors.general && (
+        <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
+          {errors.general}
+        </div>
+      )}
       <div className="grid md:grid-cols-2 gap-6">
         <div>
           <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
