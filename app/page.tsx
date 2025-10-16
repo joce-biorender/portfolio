@@ -169,21 +169,86 @@ export default function Home() {
             </div>
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-              {automationCaseStudies.map((study, index) => (
-                <Link
-                  key={study.id}
-                  href={`/automation/${study.id}`}
-                  className="group block bg-card/30 p-6 rounded-lg border border-border hover:border-accent hover:bg-card/50 transition-all duration-300 cursor-pointer transform hover:scale-[1.02] hover:shadow-lg"
-                >
-                  <div className="mb-4">
-                    <span className="text-sm text-muted-foreground font-medium">Project {index + 1}</span>
-                    <h3 className="text-lg font-medium text-foreground group-hover:text-accent transition-colors mt-2">
-                      {study.title}
-                    </h3>
-                  </div>
-                  <p className="text-sm text-accent font-medium">{study.metric}</p>
-                </Link>
-              ))}
+              {automationCaseStudies.map((study, index) => {
+                // Define visual elements for each project
+                const projectData = {
+                  'ar-triager': {
+                    icon: '⚡',
+                    gradient: 'from-blue-500/10 to-purple-500/10',
+                    borderGradient: 'from-blue-500/20 to-purple-500/20',
+                    badge: '9,000+ tickets',
+                    description: 'AI-powered ticket routing'
+                  },
+                  'refund-eligibility': {
+                    icon: '💰',
+                    gradient: 'from-green-500/10 to-emerald-500/10',
+                    borderGradient: 'from-green-500/20 to-emerald-500/20',
+                    badge: '400-550 hours saved',
+                    description: 'Automated refund assessment'
+                  },
+                  'lead-qualifier': {
+                    icon: '🎯',
+                    gradient: 'from-orange-500/10 to-red-500/10',
+                    borderGradient: 'from-orange-500/20 to-red-500/20',
+                    badge: '$337K pipeline',
+                    description: 'AI lead qualification system'
+                  }
+                }
+                
+                const data = projectData[study.id as keyof typeof projectData]
+                
+                return (
+                  <Link
+                    key={study.id}
+                    href={`/automation/${study.id}`}
+                    className="group block relative overflow-hidden rounded-2xl border border-border/50 hover:border-accent/30 transition-all duration-500 cursor-pointer transform hover:scale-[1.03] hover:shadow-2xl"
+                  >
+                    {/* Background Gradient */}
+                    <div className={`absolute inset-0 bg-gradient-to-br ${data.gradient} opacity-60 group-hover:opacity-80 transition-opacity duration-500`} />
+                    
+                    {/* Border Gradient */}
+                    <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${data.borderGradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+                    
+                    {/* Content */}
+                    <div className="relative p-8">
+                      {/* Icon and Badge */}
+                      <div className="flex items-start justify-between mb-6">
+                        <div className="text-4xl">{data.icon}</div>
+                        <div className="bg-background/80 backdrop-blur-sm px-3 py-1 rounded-full border border-border/50">
+                          <span className="text-xs font-semibold text-accent">{data.badge}</span>
+                        </div>
+                      </div>
+                      
+                      {/* Title and Description */}
+                      <div className="space-y-3">
+                        <h3 className="text-xl font-semibold text-foreground group-hover:text-accent transition-colors duration-300 leading-tight">
+                          {study.title}
+                        </h3>
+                        <p className="text-sm text-muted-foreground leading-relaxed">
+                          {data.description}
+                        </p>
+                      </div>
+                      
+                      {/* Key Metric */}
+                      <div className="mt-6 pt-4 border-t border-border/30">
+                        <div className="flex items-center justify-between">
+                          <span className="text-xs text-muted-foreground uppercase tracking-wide font-medium">Impact</span>
+                          <span className="text-sm font-bold text-accent">{study.metric}</span>
+                        </div>
+                      </div>
+                      
+                      {/* Hover Arrow */}
+                      <div className="absolute bottom-6 right-6 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0">
+                        <div className="w-8 h-8 bg-accent/10 rounded-full flex items-center justify-center">
+                          <svg className="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                )
+              })}
             </div>
           </div>
         </section>
