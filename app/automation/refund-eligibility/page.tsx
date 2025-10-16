@@ -154,64 +154,6 @@ export default function RefundEligibilityPage() {
         </section>
 
 
-        {/* Key Results */}
-        <section className="mb-16">
-          <div className="border-b border-border pb-8 mb-8">
-            <h2 className="text-2xl font-light text-foreground mb-4">
-              <span className="font-medium text-accent">Key Results</span>
-            </h2>
-          </div>
-          
-          <div className="grid sm:grid-cols-2 gap-6">
-            <div className="flex items-start gap-4">
-              <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                <CheckCircle className="w-4 h-4 text-green-600" />
-              </div>
-              <div>
-                <h3 className="font-medium text-foreground mb-1">Instant Eligibility Decisions</h3>
-                <p className="text-sm text-muted-foreground">
-                  Agents can now determine refund eligibility immediately without manual research
-                </p>
-              </div>
-            </div>
-            
-            <div className="flex items-start gap-4">
-              <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                <CheckCircle className="w-4 h-4 text-green-600" />
-              </div>
-              <div>
-                <h3 className="font-medium text-foreground mb-1">Policy Consistency</h3>
-                <p className="text-sm text-muted-foreground">
-                  Eliminated judgment-based inconsistencies with standardized policy application
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-4">
-              <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                <CheckCircle className="w-4 h-4 text-green-600" />
-              </div>
-              <div>
-                <h3 className="font-medium text-foreground mb-1">Reduced Manual Work</h3>
-                <p className="text-sm text-muted-foreground">
-                  No more manual Metabase lookups or complex eligibility calculations
-                </p>
-              </div>
-                </div>
-            
-            <div className="flex items-start gap-4">
-              <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                <CheckCircle className="w-4 h-4 text-green-600" />
-              </div>
-              <div>
-                <h3 className="font-medium text-foreground mb-1">Future-Ready Analytics</h3>
-                <p className="text-sm text-muted-foreground">
-                  Structured JSON output enables advanced analytics and reporting capabilities
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
 
         {/* Technical Deep Dive */}
         <section className="mb-16">
