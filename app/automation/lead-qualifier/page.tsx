@@ -48,9 +48,9 @@ export default function LeadQualifierPage() {
               <span className="font-medium text-accent">Overview</span>
             </h2>
           </div>
-          <div className="space-y-6 text-base text-muted-foreground leading-relaxed">
+          <div className="space-y-6 text-base text-foreground leading-relaxed">
             <p>
-              This system automatically evaluates, qualifies, and assigns inbound leads from Zendesk to the appropriate team members. It uses AI to assess lead quality, confirm business or academic intent, and route qualified leads using a load-based system that respects availability, OOO status, and weekend logic.
+              This system automatically evaluates, qualifies, and assigns inbound leads from Zendesk to the appropriate team members. It uses AI to assess lead quality, confirm industry or academic usage, and route qualified leads using a rotator-based system that respects agent availability.
             </p>
             
             {/* Interactive Workflow Viewer */}

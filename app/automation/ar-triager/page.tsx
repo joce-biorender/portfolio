@@ -48,9 +48,9 @@ export default function ARTriagerPage() {
               <span className="font-medium text-accent">Overview</span>
             </h2>
           </div>
-          <div className="space-y-6 text-base text-muted-foreground leading-relaxed">
+          <div className="space-y-6 text-base text-foreground leading-relaxed">
             <p>
-              Built during a company hackathon, this automation dynamically routes incoming AR (Accounts Receivable) tickets to the right assignee instantly. The system integrates Zendesk, Zapier Tables, and Slack, and uses JavaScript-based logic to factor in availability, OOO status, and ticket load for balanced assignment.
+              This automation dynamically routes incoming Accounts Receivable (AR) tickets to the right inbox and assignee instantly. The system uses JavaScript-based logic to factor in availability, timezone, and ticket load for balanced assignment.
             </p>
             
             {/* Interactive Workflow Viewer */}

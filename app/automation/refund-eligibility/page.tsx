@@ -48,9 +48,9 @@ export default function RefundEligibilityPage() {
               <span className="font-medium text-accent">Overview</span>
             </h2>
           </div>
-          <div className="space-y-6 text-base text-muted-foreground leading-relaxed">
+          <div className="space-y-6 text-base text-foreground leading-relaxed">
             <p>
-              Built in July 2025, this automation determines whether users qualify for a refund based on their last charge date, plan type (monthly or annual), and premium feature usage (hi-res export or publication license export). It handles optional fields, timezone normalization (Toronto → UTC), and outputs structured results.
+              This automation determines whether users qualify for a refund based on their last charge date, plan type (monthly or annual), and premium feature usage (hi-res export or publication license export). It handles optional fields, timezone normalization, and outputs structured results.
             </p>
             
             {/* Interactive Workflow Viewer */}
