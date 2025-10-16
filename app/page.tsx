@@ -45,7 +45,7 @@ export default function Home() {
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY
-      const triggerPoint = 150 // Trigger when user scrolls 150px down (earlier)
+      const triggerPoint = 10 // Trigger on the slightest scroll
       
       if (scrollPosition > triggerPoint && !showStamp) {
         setShowStamp(true)
@@ -147,8 +147,8 @@ export default function Home() {
             {showStamp && (
               <div className="mt-6 flex justify-center">
                 <div className="animate-bounce-in-down">
-                  <div className="inline-flex items-center gap-2 bg-accent/10 px-6 py-3 rounded-full border-2 border-accent/30 shadow-xl transform rotate-2 hover:rotate-0 transition-all duration-300 hover:scale-105">
-                    <span className="text-sm font-semibold text-accent">🏆 Zapier's 2025 Operations Automator of the Year</span>
+                  <div className="inline-flex items-center gap-3 bg-accent/10 px-8 py-4 rounded-full border-2 border-accent/30 shadow-xl transition-all duration-300 hover:scale-105">
+                    <span className="text-base font-semibold text-accent">🏆 Zapier's 2025 Operations Automator of the Year</span>
                   </div>
                 </div>
               </div>
