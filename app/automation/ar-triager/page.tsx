@@ -205,8 +205,8 @@ export default function ARTriagerPage() {
                 current workload, and timezone-aware working hours. This prevents race conditions by calculating assignments 
                 atomically within a single code step.
               </p>
-              <div className="bg-muted/50 p-4 rounded border">
-                <pre className="text-xs text-foreground overflow-x-auto">
+              <div className="bg-slate-900 p-4 rounded border border-slate-700">
+                <pre className="text-xs text-slate-100 overflow-x-auto font-mono">
 {`// Parse inputs from Zapier
 const names = inputData.names.split(",").map(n => n.trim());
 const available = inputData.available.split(",").map(a => a.trim().toLowerCase() === "true");
@@ -279,8 +279,8 @@ return {
   currentHour: \`\${currentHour}:00 ET\`
 };`}
                 </pre>
+                </div>
               </div>
-            </div>
 
             {/* Timezone-Aware Routing */}
             <div className="bg-card/30 p-6 rounded-lg border border-border">
@@ -289,8 +289,8 @@ return {
                 The most critical design decision was treating timezone availability as strategic business logic, not just a simple on/off flag. 
                 With team members working across different time zones and schedules, I built time-based eligibility directly into the assignment algorithm.
               </p>
-              <div className="bg-muted/50 p-4 rounded border">
-                <pre className="text-xs text-foreground overflow-x-auto">
+              <div className="bg-slate-900 p-4 rounded border border-slate-700">
+                <pre className="text-xs text-slate-100 overflow-x-auto font-mono">
 {`// Timezone-aware working hours validation
 const isWithinWorkingHours = (agent, currentTime = new Date()) => {
   const agentTimezone = agent.timezone || 'UTC';
