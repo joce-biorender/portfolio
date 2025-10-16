@@ -96,7 +96,7 @@ export default function LeadQualifierPage() {
                 <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
                   <Shield className="w-5 h-5 text-blue-600" />
                 </div>
-                <div>
+              <div>
                   <h3 className="font-medium text-foreground">Assignment Coverage</h3>
                   <p className="text-sm text-muted-foreground">100% since launch</p>
                 </div>
@@ -134,7 +134,7 @@ export default function LeadQualifierPage() {
                 <div className="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
                   <Users className="w-5 h-5 text-orange-600" />
                 </div>
-                <div>
+              <div>
                   <h3 className="font-medium text-foreground">Fair Distribution</h3>
                   <p className="text-sm text-muted-foreground">Tracked & verified</p>
                 </div>
@@ -150,6 +150,79 @@ export default function LeadQualifierPage() {
         </section>
 
 
+
+        {/* Lessons Learned */}
+        <section className="mb-16">
+          <div className="border-b border-border pb-8 mb-8">
+            <h2 className="text-2xl font-light text-foreground mb-4">
+              <span className="font-medium text-accent">Lessons Learned</span>
+            </h2>
+          </div>
+          
+          <div className="space-y-6 text-base text-muted-foreground leading-relaxed">
+            <p>
+              The Lead Gen Assistant tested my patience and persistence more than almost any other automation I've built. The hardest part wasn't the logic; it was getting the AI to reliably interpret messy Zendesk ticket text and match it to the right institution in a massive dataset, all while following strict business rules without deviation.
+            </p>
+            
+            <h3 className="font-medium text-foreground mt-8 mb-4">The Challenge of Inconsistent Interpretation</h3>
+            
+            <p>
+              In the early stages, I was frustrated because the same prompt would work perfectly one run and fail completely the next. The model would sometimes latch onto the wrong part of a ticket comment, for example, treating a user's email signature ("Department of Biology, McGill University") as the requester's organization, even when the actual request came from a Gmail address. I tried adding disclaimers like "ignore signatures and unrelated names," but the model started overcorrecting and skipping valid organizations. It became clear that I couldn't just "prompt my way" out of inconsistent inputs.
+            </p>
+            
+            <h3 className="font-medium text-foreground mt-8 mb-4">Structural Solutions Over Perfect Prompts</h3>
+            
+            <p>
+              Another roadblock was output formatting. I needed the model to return results that Zapier could parse predictably, but GPT would occasionally add bullets, headings, or change label names. I spent hours rewriting the prompt trying to force Markdown consistency, until I realized that switching to numbered key-value pairs (1. Organization:, 2. License Type:) gave the structure enough rigidity for parsing while still keeping it readable. That small change eliminated nearly all format-related misfires.
+            </p>
+            
+            <p>
+              Then came the data-handling crisis. I initially passed in Google Sheet rows as comma-delimited text, assuming it would be simple to parse. It wasn't. Institutions like "University of Toronto, Mississauga" broke the logic every time. The model would split those names into multiple entries or drop them entirely. After a long debugging session, I discovered the fix: instead of using delimiters, I could pass the raw JSON row objects directly into the code step. That change made the dataset stable, searchable, and completely eliminated comma-related edge cases.
+            </p>
+            
+            <h3 className="font-medium text-foreground mt-8 mb-4">Choosing the Right Model</h3>
+            
+            <p>
+              I also learned how much model choice matters. I started with GPT-3.5-turbo, but it was too unpredictable for domain parsing. It would confuse "biorender.com" with "biomed.com" or hallucinate fake matches. Upgrading to GPT-4 instantly improved reasoning, but it also required more controlled prompts to prevent verbosity. I ultimately switched to Gemini 2.0 Flash because its larger context window allowed it to follow instructions more consistently and hallucinate less frequently.
+            </p>
+            
+            <h3 className="font-medium text-foreground mt-8 mb-4">Programming an LLM with Absolute Logic</h3>
+            
+            <p>
+              The most critical lesson came when I stopped treating the LLM as a helpful assistant and started treating it as a system that needed to be programmed with absolute, unambiguous logic.
+            </p>
+            
+            <p>
+              <strong>The "Helpful" Inference Problem:</strong> When a lead requested 11 seats, the model qualified it, reasoning it was "close enough" to the 13-seat minimum. This demonstrated that the LLM's desire to be helpful can override subtle rules. The solution was replacing suggestions with absolute commands. Phrasing changed from "the minimum is 13" to "ZERO TOLERANCE: This is an ABSOLUTE, NON-NEGOTIABLE THRESHOLD. Any request for 12 seats or fewer is an immediate and irreversible disqualification."
+            </p>
+            
+            <p>
+              <strong>Rule Shopping and Hierarchy Violations:</strong> The most frustrating issue was when the model ignored a clear disqualification rule in Step 1 and jumped ahead to Step 3 to misapply a different rule. It was actively looking for a reason to qualify the lead, even if it meant breaking the logical hierarchy. The fix was adding explicit hierarchy enforcement: "If any disqualification condition is met...STOP ALL FURTHER EVALUATION." This built a logical firewall that prevented the model from reading ahead and misapplying rules out of order.
+            </p>
+            
+            <p>
+              <strong>Defining Business Context Explicitly:</strong> The model couldn't distinguish between generic terms ("licenses") and specific product terms ("Lab Licenses"). It didn't know my team's internal assumption that "5 licenses" means 5 individual seats, not a 5-seat Lab License product. The breakthrough was creating a "DEFAULT SEAT COUNT RULE" that explicitly stated: "a request for 'X licenses' MUST be interpreted as a request for 'X seats'." By hard-coding these business definitions directly into the prompt, I removed the model's need to guess and prevented critical misinterpretations.
+            </p>
+            
+            <h3 className="font-medium text-foreground mt-8 mb-4">Key Takeaways</h3>
+            
+            <p>
+              In the end, I learned that building reliable AI automations isn't just about good prompts. It's about building guardrails around the model. The system became both consistent and scalable only after I:
+            </p>
+            
+            <ul className="list-disc list-inside space-y-2 mt-4">
+              <li>Prioritized structure over cleverness: rigid output formats and JSON data handling eliminated edge cases</li>
+              <li>Used absolute, non-negotiable language: replaced suggestions with commands to prevent helpful but incorrect inferences</li>
+              <li>Enforced logical hierarchy explicitly: added hard stops to prevent rule shopping</li>
+              <li>Hard-coded business context: defined every assumption and default to eliminate ambiguity</li>
+              <li>Chose the right model for the task: balanced reasoning capability with context window and consistency</li>
+            </ul>
+            
+            <p>
+              Once I stopped trying to make the model perfect and instead focused on containing its variability through structure, validation, and better data formatting, the Lead Gen Assistant became a reliable, production-ready system.
+            </p>
+          </div>
+        </section>
 
         {/* Technical Deep Dive */}
         <section className="mb-16">

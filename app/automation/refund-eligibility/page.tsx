@@ -100,7 +100,7 @@ export default function RefundEligibilityPage() {
                 <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
                   <TrendingUp className="w-5 h-5 text-blue-600" />
                 </div>
-                <div>
+              <div>
                   <h3 className="font-medium text-foreground">Response Time</h3>
                   <p className="text-sm text-muted-foreground">22% improvement</p>
                 </div>
@@ -138,7 +138,7 @@ export default function RefundEligibilityPage() {
                 <div className="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
                   <Shield className="w-5 h-5 text-orange-600" />
                 </div>
-                <div>
+              <div>
                   <h3 className="font-medium text-foreground">Zero Mis-refunds</h3>
                   <p className="text-sm text-muted-foreground">Since launch</p>
                 </div>
@@ -154,6 +154,59 @@ export default function RefundEligibilityPage() {
         </section>
 
 
+
+        {/* Lessons Learned */}
+        <section className="mb-16">
+          <div className="border-b border-border pb-8 mb-8">
+            <h2 className="text-2xl font-light text-foreground mb-4">
+              <span className="font-medium text-accent">Lessons Learned</span>
+            </h2>
+          </div>
+          
+          <div className="space-y-6 text-base text-muted-foreground leading-relaxed">
+            <p>
+              This project taught me how much stronger automations become when they are built collaboratively. I built the Refund Eligibility Automation with my colleague <a href="https://www.linkedin.com/in/mayet-awoke-a059481a7" target="_blank" rel="noopener noreferrer" className="text-accent hover:text-accent/80 underline">Mayet Awoke</a>, and most of it came together through Slack huddles with my screen shared. We built the system piece by piece, testing, debugging, and rewriting logic until we had a working minimum viable product. I handled the code-based logic inside Zapier, and Mayet pressure-tested the system's behaviour in real-world refund scenarios.
+            </p>
+            
+            <h3 className="font-medium text-foreground mt-8 mb-4">Handling Incomplete and Inconsistent Data</h3>
+            
+            <p>
+              Early on, we ran into problems with incomplete or inconsistent data. Some users were missing charge dates or export timestamps, which caused the automation to fail or incorrectly mark them as ineligible. We fixed this by rewriting the logic to check each field conditionally, evaluating only what existed instead of assuming full data. This immediately stabilized the system and made the output more reliable.
+            </p>
+            
+            <h3 className="font-medium text-foreground mt-8 mb-4">Adding Transparency to Black Box Logic</h3>
+            
+            <p>
+              Another challenge was that the automation initially acted like a black box. It would return a simple "Eligible" or "Not Eligible," leaving agents confused about the reason. We decided to add a clear output that included both a human-readable reason and a short machine-readable code, such as PREMIUM, 7DAYS, or 30DAYS. This change gave agents clarity while keeping the logic traceable for future analytics.
+            </p>
+            
+            <div className="my-8">
+              <img 
+                src="/mayet-suggestion.png" 
+                alt="Mayet suggesting human-in-the-loop approach in Slack" 
+                className="max-w-lg mx-auto rounded-lg border border-border shadow-sm"
+              />
+            </div>
+            
+            <h3 className="font-medium text-foreground mt-8 mb-4">Implementing a Human-in-the-Loop Review Step</h3>
+            
+            <p>
+              The biggest improvement came from adding a human-in-the-loop step, which was actually Mayet's idea. After watching a session from Zapier's ZapConnect Conference, she suggested we adopt that model for refund reviews. At first, I wanted to keep the automation fully autonomous, but we realized that refund cases often include gray areas like partial usage or borderline timestamps. Adding a review path for uncertain results made the system much more accurate and built trust among the team.
+            </p>
+            
+            <h3 className="font-medium text-foreground mt-8 mb-4">Resolving Timezone Inconsistencies</h3>
+            
+            <p>
+              We also discovered subtle timezone inconsistencies between Stripe, Metabase, and Zendesk. I fixed this by normalizing all timestamps to Coordinated Universal Time (UTC) before running eligibility checks. Once that was in place, false mismatches near midnight disappeared entirely.
+            </p>
+            
+            <h3 className="font-medium text-foreground mt-8 mb-4">Key Takeaways</h3>
+            
+            <p>
+              Looking back, this project showed me how collaboration and iteration can elevate a simple workflow into a reliable, policy-aligned system. Mayet's idea for a human review layer and my work refining the code blocks complemented each other perfectly. By combining perspectives, we built something far more accurate and resilient than either of us could have built alone.
+            </p>
+          </div>
+        </section>
 
         {/* Technical Deep Dive */}
         <section className="mb-16">

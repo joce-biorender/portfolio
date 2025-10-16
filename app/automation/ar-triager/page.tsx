@@ -188,13 +188,64 @@ export default function ARTriagerPage() {
         </section>
 
 
+        {/* Lessons Learned */}
+        <section className="mb-16">
+          <div className="border-b border-border pb-8 mb-8">
+            <h2 className="text-2xl font-light text-foreground mb-4">
+              <span className="font-medium text-accent">Lessons Learned</span>
+            </h2>
+          </div>
+          
+          <div className="space-y-6 text-base text-muted-foreground leading-relaxed">
+            <h3 className="font-medium text-foreground mt-8 mb-4">Learning to Debug Production Systems</h3>
+            
+            <p>
+              The first major issue hit me when tickets weren't getting assigned to anyone. At first, I thought it was a logic error in my assignment rules. It wasn't. When two tickets came in almost simultaneously, both runs of the Zap would check who had the lowest workload at the exact same moment, and somehow in that collision, the assignment would fail completely and the ticket would sit unassigned.
+            </p>
+            
+            <p>
+              I had no idea what was happening. The error messages weren't helpful, and the behavior was completely inconsistent. After digging through forums and Googling, I learned I was dealing with something called a race condition. I'd never encountered this concept before, but once I understood it, the fix became clear. I added intentional delays to stagger API calls and moved the load calculation into one code step that would run all the way through before moving on to assignment.
+            </p>
+            
+            <h3 className="font-medium text-foreground mt-8 mb-4">Solving the API Rate Limit Problem</h3>
+            
+            <p>
+              To check each agent's current ticket load, I initially used Zapier's standard webhook configuration. It kept failing and I couldn't figure out why. I'd test it, see the failure, tweak the logic, test again, same issue. It wasn't until I looked at one agent's ticket queue and realized they had a massive number of open tickets that it clicked: I was hitting Zendesk's API rate limits. The solution was switching to a custom API request setup where I could batch queries more efficiently and control the request frequency.
+            </p>
+            
+            <p>
+              I also learned to write modular code within the Zap. Instead of cramming all the assignment logic into one giant code block, I created separate code steps for each ticket category. Each step handled its own load calculation, timezone checks, and agent selection logic. This made debugging much easier because I could test each category's assignment logic independently.
+            </p>
+            
+            <h3 className="font-medium text-foreground mt-8 mb-4">Designing for Operational Reality</h3>
+            
+            <p>
+              As the system matured, I learned that theoretical elegance often collides with operational complexity. The routing logic couldn't be one-size-fits-all. It needed to accommodate global teams, timezone constraints, and transitional periods.
+            </p>
+            
+            <p>
+              I built time-based eligibility directly into the assignment algorithm, defining specific working hour windows for each agent and checking real-time conditions before routing. This prevented overnight tickets from sitting unassigned or agents receiving work after logging off.
+            </p>
+            
+            <p>
+              For exceptions like onboarding periods or schedule changes, explicit exclusions proved clearer than complex conditional logic. Temporarily filtering specific agents from certain rotations with a single, well-commented line of code was more reliable and easier to update when circumstances changed.
+            </p>
+            
+            <h3 className="font-medium text-foreground mt-8 mb-4">The Human Element</h3>
+            
+            <p>
+              Working closely with the AR team taught me that automation design has to account for human trust. Technical decisions like protecting newer team members from overflow during training, ensuring international agents didn't receive assignments after hours, and creating retry mechanisms so staff didn't return to chaos after holidays were about agent experience, not just efficiency.
+            </p>
+          </div>
+        </section>
+
         {/* Technical Deep Dive */}
         <section className="mb-16">
           <div className="border-b border-border pb-8 mb-8">
             <h2 className="text-2xl font-light text-foreground mb-4">
               <span className="font-medium text-accent">Technical Deep Dive</span>
             </h2>
-              </div>
+          </div>
 
           <div className="space-y-8">
             {/* Load-Based Assignment Logic */}
@@ -393,59 +444,6 @@ const filterAvailableAgents = (agents) => {
             </div>
           </div>
         </section>
-
-        {/* Lessons Learned */}
-        <section className="mb-16">
-          <div className="border-b border-border pb-8 mb-8">
-            <h2 className="text-2xl font-light text-foreground mb-4">
-              <span className="font-medium text-accent">Lessons Learned</span>
-            </h2>
-          </div>
-          
-          <div className="space-y-6 text-base text-muted-foreground leading-relaxed">
-            <h3 className="font-medium text-foreground mt-8 mb-4">Learning to Debug Production Systems</h3>
-            
-            <p>
-              The first major issue hit me when tickets weren't getting assigned to anyone. At first, I thought it was a logic error in my assignment rules. It wasn't. When two tickets came in almost simultaneously, both runs of the Zap would check who had the lowest workload at the exact same moment, and somehow in that collision, the assignment would fail completely and the ticket would sit unassigned.
-            </p>
-            
-            <p>
-              I had no idea what was happening. The error messages weren't helpful, and the behavior was completely inconsistent. After digging through forums and Googling, I learned I was dealing with something called a race condition. I'd never encountered this concept before, but once I understood it, the fix became clear. I added intentional delays to stagger API calls and moved the load calculation into one code step that would run all the way through before moving on to assignment.
-            </p>
-            
-            <h3 className="font-medium text-foreground mt-8 mb-4">Solving the API Rate Limit Problem</h3>
-            
-            <p>
-              To check each agent's current ticket load, I initially used Zapier's standard webhook configuration. It kept failing and I couldn't figure out why. I'd test it, see the failure, tweak the logic, test again, same issue. It wasn't until I looked at one agent's ticket queue and realized they had a massive number of open tickets that it clicked: I was hitting Zendesk's API rate limits. The solution was switching to a custom API request setup where I could batch queries more efficiently and control the request frequency.
-            </p>
-            
-            <p>
-              I also learned to write modular code within the Zap. Instead of cramming all the assignment logic into one giant code block, I created separate code steps for each ticket category. Each step handled its own load calculation, timezone checks, and agent selection logic. This made debugging much easier because I could test each category's assignment logic independently.
-            </p>
-            
-            <h3 className="font-medium text-foreground mt-8 mb-4">Designing for Operational Reality</h3>
-            
-            <p>
-              As the system matured, I learned that theoretical elegance often collides with operational complexity. The routing logic couldn't be one-size-fits-all. It needed to accommodate global teams, timezone constraints, and transitional periods.
-            </p>
-            
-            <p>
-              I built time-based eligibility directly into the assignment algorithm, defining specific working hour windows for each agent and checking real-time conditions before routing. This prevented overnight tickets from sitting unassigned or agents receiving work after logging off.
-            </p>
-            
-            <p>
-              For exceptions like onboarding periods or schedule changes, explicit exclusions proved clearer than complex conditional logic. Temporarily filtering specific agents from certain rotations with a single, well-commented line of code was more reliable and easier to update when circumstances changed.
-            </p>
-            
-            <h3 className="font-medium text-foreground mt-8 mb-4">The Human Element</h3>
-            
-            <p>
-              Working closely with the AR team taught me that automation design has to account for human trust. Technical decisions like protecting newer team members from overflow during training, ensuring international agents didn't receive assignments after hours, and creating retry mechanisms so staff didn't return to chaos after holidays were about agent experience, not just efficiency.
-            </p>
-          </div>
-        </section>
-
-
 
         {/* Back to Portfolio */}
         <div className="text-center pt-8 border-t border-border">
