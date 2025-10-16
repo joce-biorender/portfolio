@@ -45,7 +45,7 @@ export default function Home() {
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY
-      const triggerPoint = 300 // Trigger when user scrolls 300px down
+      const triggerPoint = 150 // Trigger when user scrolls 150px down (earlier)
       
       if (scrollPosition > triggerPoint && !showStamp) {
         setShowStamp(true)
@@ -114,12 +114,6 @@ export default function Home() {
               Hi, I'm Jocelyne
             </h1>
             
-            {/* Credibility Badge */}
-            <div className="mb-8">
-              <div className="inline-flex items-center gap-2 bg-accent/10 px-4 py-2 rounded-full border border-accent/20">
-                <span className="text-sm font-medium text-accent">🏆 Zapier's 2025 Operations Automator of the Year</span>
-              </div>
-            </div>
             
             <div className="max-w-2xl mx-auto space-y-6">
               <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed">
@@ -151,10 +145,10 @@ export default function Home() {
             
             {/* Scroll-triggered Stamp Animation */}
             {showStamp && (
-              <div className="mt-8 flex justify-center">
+              <div className="mt-6 flex justify-center">
                 <div className="animate-bounce-in-down">
-                  <div className="inline-flex items-center gap-2 bg-accent/10 px-4 py-2 rounded-full border border-accent/20 shadow-lg transform rotate-3 hover:rotate-0 transition-transform duration-300">
-                    <span className="text-sm font-medium text-accent">🏆 Zapier's 2025 Operations Automator of the Year</span>
+                  <div className="inline-flex items-center gap-2 bg-accent/10 px-6 py-3 rounded-full border-2 border-accent/30 shadow-xl transform rotate-2 hover:rotate-0 transition-all duration-300 hover:scale-105">
+                    <span className="text-sm font-semibold text-accent">🏆 Zapier's 2025 Operations Automator of the Year</span>
                   </div>
                 </div>
               </div>
