@@ -403,20 +403,24 @@ const filterAvailableAgents = (agents) => {
           </div>
           
           <div className="space-y-6 text-base text-muted-foreground leading-relaxed">
+            <h3 className="font-medium text-foreground mt-8 mb-4">Learning to Debug Production Systems</h3>
+            
             <p>
-              Building the AR Triage System pushed me to think beyond surface-level automation and design for system reliability, fairness, and resilience. Early on, I encountered several issues that forced me to debug across multiple layers of Zapier, Zendesk API, and JavaScript logic simultaneously.
+              The first major issue hit me when tickets weren't getting assigned to anyone. At first, I thought it was a logic error in my assignment rules. It wasn't. When two tickets came in almost simultaneously, both runs of the Zap would check who had the lowest workload at the exact same moment, and somehow in that collision, the assignment would fail completely and the ticket would sit unassigned.
             </p>
             
             <p>
-              For example, the system was intermittently assigning tickets to the wrong agent or skipping assignments altogether. After investigating, I discovered that Zapier's asynchronous execution was causing two Zaps triggered at nearly the same time to both fetch the same "lowest-load" agent before either could update Zendesk. This created race conditions that only appeared under load. To fix it, I restructured the flow, added a controlled delay to stagger API calls, and moved load-calculation logic into a dedicated code step so it would complete atomically before assignment continued.
+              I had no idea what was happening. The error messages weren't helpful, and the behavior was completely inconsistent. After digging through forums and Googling, I learned I was dealing with something called a race condition. I'd never encountered this concept before, but once I understood it, the fix became clear. I added intentional delays to stagger API calls and moved the load calculation into one code step that would run all the way through before moving on to assignment.
+            </p>
+            
+            <h3 className="font-medium text-foreground mt-8 mb-4">Solving the API Rate Limit Problem</h3>
+            
+            <p>
+              To check each agent's current ticket load, I initially used Zapier's standard webhook configuration. It kept failing and I couldn't figure out why. I'd test it, see the failure, tweak the logic, test again, same issue. It wasn't until I looked at one agent's ticket queue and realized they had a massive number of open tickets that it clicked: I was hitting Zendesk's API rate limits. The solution was switching to a custom API request setup where I could batch queries more efficiently and control the request frequency.
             </p>
             
             <p>
-              Another layer of debugging involved Zendesk's API behavior. The payload for updating ticket assignees required a specific JSON structure, and a small syntax error or missing field would cause silent failures that looked like logic bugs. I learned to validate responses after every API call and to use conditional fallback routes in Zapier so the system could notify the AR Slack channel if an assignment failed instead of leaving a ticket unassigned.
-            </p>
-            
-            <p>
-              I also learned the importance of data validation and modular design. Instead of keeping all logic in one large Zap, I broke it into smaller sub-flows and tested each in isolation, such as separating the load counter, assignment logic, and Slack notifier into distinct, debuggable components. This approach made the system both more stable and easier to iterate on.
+              I also learned to write modular code within the Zap. Instead of cramming all the assignment logic into one giant code block, I created separate code steps for each ticket category. Each step handled its own load calculation, timezone checks, and agent selection logic. This made debugging much easier because I could test each category's assignment logic independently.
             </p>
             
             <h3 className="font-medium text-foreground mt-8 mb-4">Designing for Operational Reality</h3>
@@ -426,29 +430,17 @@ const filterAvailableAgents = (agents) => {
             </p>
             
             <p>
-              The most critical design decision was treating timezone availability as strategic business logic, not just a simple on/off flag. With team members working across different time zones and schedules, I built time-based eligibility directly into the assignment algorithm. This meant defining specific working hour windows for each agent and checking real-time conditions before routing, preventing scenarios where overnight tickets would sit unassigned or agents would receive work after logging off.
+              I built time-based eligibility directly into the assignment algorithm, defining specific working hour windows for each agent and checking real-time conditions before routing. This prevented overnight tickets from sitting unassigned or agents receiving work after logging off.
             </p>
             
             <p>
-              During onboarding periods or schedule changes, the system needed to handle exceptions without breaking. Rather than building complex conditional logic, explicit exclusions proved clearer and more maintainable. For example, temporarily filtering specific agents from certain rotations with a single, well-commented line of code was far more reliable than intricate checks. These rules could be easily removed when circumstances changed, with inline documentation explaining the business reasoning.
+              For exceptions like onboarding periods or schedule changes, explicit exclusions proved clearer than complex conditional logic. Temporarily filtering specific agents from certain rotations with a single, well-commented line of code was more reliable and easier to update when circumstances changed.
             </p>
             
             <h3 className="font-medium text-foreground mt-8 mb-4">The Human Element</h3>
             
             <p>
-              Beyond the technical lessons, this project deepened my understanding of cross-functional collaboration. Working closely with the AR team taught me to balance automation design with human trust, ensuring the system felt transparent and fair while optimizing for speed and accuracy.
-            </p>
-            
-            <p>
-              The automation wasn't just about distributing tickets efficiently. It was about supporting agents' ability to do their jobs well. Technical decisions like protecting newer team members from overflow during training, ensuring international agents didn't receive assignments after hours, and creating retry mechanisms so staff didn't return to chaos after holidays were fundamentally about agent experience, not just operational efficiency.
-            </p>
-            
-            <p>
-              I learned to always ask: "How does this affect the human using the system?" The best automations don't just move data faster. They earn confidence from the teams that rely on them and make people's work lives genuinely better. They handle the messy reality of how humans actually work (across timezones, during transitions, with varying skill levels) with grace and resilience.
-            </p>
-            
-            <p className="font-medium text-foreground">
-              The mark of a great automation isn't zero bugs. It's building systems that gracefully handle complexity while remaining transparent, fair, and trustworthy to the people they serve.
+              Working closely with the AR team taught me that automation design has to account for human trust. Technical decisions like protecting newer team members from overflow during training, ensuring international agents didn't receive assignments after hours, and creating retry mechanisms so staff didn't return to chaos after holidays were about agent experience, not just efficiency.
             </p>
           </div>
         </section>
