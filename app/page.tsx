@@ -1,3 +1,5 @@
+"use client"
+
 import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
@@ -7,6 +9,7 @@ import { PressMediaSection } from "@/components/press-media-section"
 import { ResumeDownloadButton } from "@/components/resume-download-button"
 import { ContactForm } from "@/components/contact-form"
 import { TimelineSection } from "@/components/timeline-section"
+import { useState, useEffect } from "react"
 
 const automationCaseStudies = [
   {
@@ -37,6 +40,22 @@ const techStack = [
 ]
 
 export default function Home() {
+  const [showStamp, setShowStamp] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY
+      const triggerPoint = 300 // Trigger when user scrolls 300px down
+      
+      if (scrollPosition > triggerPoint && !showStamp) {
+        setShowStamp(true)
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [showStamp])
+
   return (
     <div className="min-h-screen">
       <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border">
@@ -129,6 +148,17 @@ export default function Home() {
               </Button>
               <ResumeDownloadButton />
             </div>
+            
+            {/* Scroll-triggered Stamp Animation */}
+            {showStamp && (
+              <div className="mt-8 flex justify-center">
+                <div className="animate-bounce-in-down">
+                  <div className="inline-flex items-center gap-2 bg-accent/10 px-4 py-2 rounded-full border border-accent/20 shadow-lg transform rotate-3 hover:rotate-0 transition-transform duration-300">
+                    <span className="text-sm font-medium text-accent">🏆 Zapier's 2025 Operations Automator of the Year</span>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </section>
 
