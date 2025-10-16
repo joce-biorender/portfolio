@@ -66,6 +66,9 @@ export default function Home() {
               <a href="#automation" className="text-sm font-medium text-foreground hover:text-accent transition-colors">
                 Work
               </a>
+              <a href="#resume" className="text-sm font-medium text-foreground hover:text-accent transition-colors">
+                Timeline
+              </a>
               <a href="#awards" className="text-sm font-medium text-foreground hover:text-accent transition-colors">
                 Awards
               </a>
@@ -73,10 +76,7 @@ export default function Home() {
                 href="#press-media"
                 className="text-sm font-medium text-foreground hover:text-accent transition-colors"
               >
-                Press
-              </a>
-              <a href="#resume" className="text-sm font-medium text-foreground hover:text-accent transition-colors">
-                Resume
+                Media
               </a>
               <a href="#contact" className="text-sm font-medium text-foreground hover:text-accent transition-colors">
                 Contact

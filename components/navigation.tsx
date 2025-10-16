@@ -12,16 +12,16 @@ export function Navigation() {
       <div className="max-w-4xl mx-auto px-4 sm:px-8 py-4">
         <div className="flex items-center justify-center gap-6 text-sm">
           <Link
-            href="/#resume"
-            className="text-muted-foreground hover:text-accent transition-colors"
-          >
-            Timeline
-          </Link>
-          <Link
             href="/#automation"
             className="text-muted-foreground hover:text-accent transition-colors"
           >
             Projects
+          </Link>
+          <Link
+            href="/#resume"
+            className="text-muted-foreground hover:text-accent transition-colors"
+          >
+            Timeline
           </Link>
           <Link
             href="/#awards"
