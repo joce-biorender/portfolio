@@ -156,37 +156,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Timeline & Tech Stack Section */}
-        <section id="resume" className="px-4 sm:px-8 py-20 border-t border-border">
-          <TimelineSection />
-          
-          {/* Tech Stack */}
-          <div className="border-t border-border pt-16 mt-16">
-            <div className="max-w-4xl mx-auto">
-              <div className="text-center mb-12">
-                <h3 className="text-xl font-light text-foreground mb-4">
-                  <span className="font-medium text-accent">Tech Stack</span>
-                </h3>
-                <p className="text-base text-muted-foreground max-w-xl mx-auto leading-relaxed">
-                  Tools and technologies I use to build robust automation systems
-                </p>
-              </div>
-              
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
-                {techStack.map((tech, index) => (
-                  <div
-                    key={index}
-                    className="text-center py-4 border-b border-border hover:border-accent transition-colors duration-300"
-                  >
-                    <span className="text-sm font-medium text-foreground block">{tech.name}</span>
-                    <span className="text-xs text-muted-foreground mt-1 block">{tech.category}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* Automation Case Studies Section */}
         <section id="automation" className="px-4 sm:px-8 py-20 border-t border-border">
           <div className="max-w-6xl mx-auto">
@@ -215,6 +184,37 @@ export default function Home() {
                   <p className="text-sm text-accent font-medium">{study.metric}</p>
                 </Link>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Timeline & Tech Stack Section */}
+        <section id="resume" className="px-4 sm:px-8 py-20 border-t border-border">
+          <TimelineSection />
+          
+          {/* Tech Stack */}
+          <div className="border-t border-border pt-16 mt-16">
+            <div className="max-w-4xl mx-auto">
+              <div className="text-center mb-12">
+                <h3 className="text-xl font-light text-foreground mb-4">
+                  <span className="font-medium text-accent">Tech Stack</span>
+                </h3>
+                <p className="text-base text-muted-foreground max-w-xl mx-auto leading-relaxed">
+                  Tools and technologies I use to build robust automation systems
+                </p>
+              </div>
+              
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
+                {techStack.map((tech, index) => (
+                  <div
+                    key={index}
+                    className="text-center py-4 border-b border-border hover:border-accent transition-colors duration-300"
+                  >
+                    <span className="text-sm font-medium text-foreground block">{tech.name}</span>
+                    <span className="text-xs text-muted-foreground mt-1 block">{tech.category}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
