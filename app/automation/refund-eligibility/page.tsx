@@ -330,6 +330,14 @@ Confidence Level: [High / Medium / Low]`}
               The biggest improvement came from adding a human-in-the-loop step, which was actually Mayet's idea. After watching a session from Zapier's ZapConnect Conference, she suggested we adopt that model for refund reviews. At first, I wanted to keep the automation fully autonomous, but we realized that refund cases often include gray areas like partial usage or borderline timestamps. Adding a review path for uncertain results made the system much more accurate and built trust among the team.
             </p>
             
+            <div className="my-8">
+              <img 
+                src="/mayetsuggests.png" 
+                alt="Mayet suggesting human-in-the-loop approach in Slack" 
+                className="max-w-md mx-auto rounded-lg border border-border shadow-sm"
+              />
+            </div>
+            
             <h3 className="font-medium text-foreground mt-8 mb-4">Resolving Timezone Inconsistencies</h3>
             
             <p>
