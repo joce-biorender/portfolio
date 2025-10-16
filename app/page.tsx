@@ -120,7 +120,7 @@ export default function Home() {
                 I'm an <span className="font-medium text-foreground">Automation & Operations Specialist</span> with a Master's in <span className="whitespace-nowrap">Molecular Science</span>.
               </p>
               <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
-                Research taught me how to troubleshoot, design repeatable experiments, and persist when things break. 
+                Research taught me how to troubleshoot systematically and persist when things break. 
                 <span className="block mt-2 text-accent font-medium">That rhythm still guides every system I build today.</span>
               </p>
             </div>
