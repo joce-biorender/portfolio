@@ -93,7 +93,7 @@ export function TimelineSection() {
           How I Got <span className="font-medium text-accent">Here</span>
         </h2>
         <p className="text-base sm:text-lg text-muted-foreground max-w-xl mx-auto leading-relaxed">
-          From scientist to automation expert - my journey of discovery, failure, and growth
+          From scientist to automation specialist: my journey of discovery, failure, and growth
         </p>
       </div>
 
